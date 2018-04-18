@@ -5,7 +5,7 @@ import Days from './Days';
 
 class Room extends Component {
   render() {
-    const { name, description } = this.props;
+    const { name, description, dates } = this.props;
 
     return (
       <div className="rr-room rr-container">
@@ -14,7 +14,7 @@ class Room extends Component {
           <div className="rr-room_description">{description}</div>
         </div>
         <div className="rr-content">
-          <Days />
+          <Days dates={dates} />
         </div>
       </div>
     );
@@ -23,7 +23,8 @@ class Room extends Component {
 
 Room.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string
+  description: PropTypes.string,
+  dates: PropTypes.array.isRequired
 }
 
 export default Room;

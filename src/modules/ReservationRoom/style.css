@@ -22,6 +22,10 @@
   column-count: 2;
 }
 
+.rr-room_time {
+  cursor: pointer;
+}
+
 .rr-room {
   padding-top: 10px;
 }

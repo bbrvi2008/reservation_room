@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
+import moment from 'moment';
+
 class Paginator extends Component {
   render() {
+    const { dates } = this.props;
+
     return (
       <div className="rr-container">
         <div className="rr-left">
@@ -13,18 +17,18 @@ class Paginator extends Component {
               {`<<<`}
             </div>
             <div className="rr-paginator_month_title">
-              Июль
+              {moment(dates[0]).format("MMMM")}
             </div>
             <div className="rr-paginator_month_right">
               {`>>>`}
             </div>
           </div>
           <div className="rr-paginator_days">
-            <div className="rr-paginator_day">10 Понедельник</div>
-            <div className="rr-paginator_day">11 Вторник</div>
-            <div className="rr-paginator_day">12 Среда</div>
-            <div className="rr-paginator_day">13 Четверг</div>
-            <div className="rr-paginator_day">14 Пятница</div>            
+            {
+              dates.map((date, i) => (
+                <div className="rr-paginator_day" key={i}>{moment(date).format("DD dddd")}</div>
+              ))
+            }            
           </div>
         </div>    
       </div>
