@@ -4,26 +4,12 @@
   width: 20%;
 }
 
-.rr-paginator_month_left {
-  float: left;
-}
 
-.rr-paginator_month_title {
-  display: inline-block;
-}
-
-.rr-paginator_month_right {
-  float: right;
-}
 
 .rr-room_day {
   display: inline-block;
   width: 20%;
   column-count: 2;
-}
-
-.rr-room_time {
-  cursor: pointer;
 }
 
 .rr-room {
@@ -40,5 +26,14 @@
 
 .rr-content {
   width: 80%;
+}
+
+.rr-room_free-time {
+  cursor: pointer;
+}
+
+.rr-room_reserved-time {
+  background-color: lightgrey;
+  cursor: default;
 }
 

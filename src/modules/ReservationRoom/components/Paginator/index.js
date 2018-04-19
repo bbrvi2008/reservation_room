@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import moment from 'moment';
 
+import './style.css'
+
 class Paginator extends Component {
   render() {
-    const { dates } = this.props;
+    const { dates, pageNext, pagePrev } = this.props;
 
     return (
       <div className="rr-container">
@@ -12,14 +15,14 @@ class Paginator extends Component {
           Комната
         </div>
         <div className="rr-content rr-paginator">
-          <div className="rr-paginator_month">
-            <div className="rr-paginator_month_left">
+          <div className="rr-paginator_buttons">
+            <div className="rr-paginator_button rr-paginator_left" onClick={pagePrev}>
               {`<<<`}
             </div>
-            <div className="rr-paginator_month_title">
+            <div className="rr-paginator_title">
               {moment(dates[0]).format("MMMM")}
             </div>
-            <div className="rr-paginator_month_right">
+            <div className="rr-paginator_button rr-paginator_right" onClick={pageNext}>
               {`>>>`}
             </div>
           </div>
@@ -35,5 +38,11 @@ class Paginator extends Component {
     );
   }
 }
+
+Paginator.propTypes = {
+  dates: PropTypes.array.isRequired,
+  pageNext: PropTypes.func.isRequired,
+  pagePrev: PropTypes.func.isRequired
+};
 
 export default Paginator;

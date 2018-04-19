@@ -1,16 +1,42 @@
 import { PAGE_NEXT, PAGE_PREV } from '../actions/dates';
 
 const initialState = {
-  sDate: new Date(2017, 6, 9),
+  sDate: new Date(2017, 6, 10),
   count: 5
 };
 
 //TODO: исключить выходные дни
 const incrementDate = (date, shift) => {
   let newDate = new Date(date);
-  newDate.setDate(newDate.getDate());
+  newDate.setDate(newDate.getDate() + shift);
+  let day = newDate.getDay();
+  if(day == 6 || day == 0) {
+    newDate.setDate(newDate.getDate() + (1 + 7 - newDate.getDay()) % 7);
+  }
 
   return newDate;
+}
+
+let utils = {
+  dateCounterDecorator: (date, step) => {
+    return () => {
+      let nextDate = new Date(date);
+      date.setDate(date.getDate() + step);
+      return nextDate;
+    }
+  },
+  pageNext: (date) => {
+    let newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 7);   
+
+    return newDate;
+  },
+  pagePrev: (date) => {
+    let newDate = new Date(date);
+    newDate.setDate(newDate.getDate() - 7);
+
+    return newDate;
+  }
 }
 
 export default (state = initialState, action) => {
@@ -18,30 +44,21 @@ export default (state = initialState, action) => {
     case PAGE_NEXT:
       return {
         ...state,
-        sDate: incrementDate(state.sDate, state.count)
+        sDate: utils.pageNext(state.sDate)
       }
     case PAGE_PREV:
       return {
         ...state,
-        sDate: incrementDate(state.sDate, -1 * state.count)
+        sDate: utils.pagePrev(state.sDate)
       }
     default:
       return state;
   }
 }
 
-let utils = {
-  dateCounterDecorator: (date, step) => {
-    return () => {
-      date.setDate(date.getDate() + step);
-      return new Date(date);
-    }
-  }
-}
-
 export const getDates = (state) => {
   const { dates } = state;
 
-  const dateCounter = utils.dateCounterDecorator(dates.sDate, 1);
+  const dateCounter = utils.dateCounterDecorator(new Date(dates.sDate), 1);
   return Array(dates.count).fill().map(() => (dateCounter()));
 }

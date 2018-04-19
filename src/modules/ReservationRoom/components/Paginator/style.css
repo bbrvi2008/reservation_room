@@ -1,0 +1,15 @@
+.rr-paginator_left {
+  float: left;
+}
+
+.rr-paginator_title {
+  display: inline-block;
+}
+
+.rr-paginator_right {
+  float: right;
+}
+
+.rr-paginator_button {
+  cursor: pointer;
+}

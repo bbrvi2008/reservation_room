@@ -4,40 +4,65 @@ import { connect } from 'react-redux';
 import Paginator from './components/Paginator/index';
 import Room from './components/Room/index';
 
+import { ROOM_GREEN, ROOM_RED, ROOM_BLUE, ROOM_PURPLE } from './constants';
+
+import datesActions from './actions/dates';
+import reservationsActions from './actions/reservations';
+
 import { getDates } from './reducers/dates';
+import { getReservations } from './reducers/reservations';
 
 
 import './style.css';
 
 class ReservationRoom extends Component {
-
+  
   render() {
-    const { dates } = this.props;
+    const { dates, pageNext, pagePrev } = this.props;
+    const { reservations, reservationTime } = this.props;
+
+    console.log(reservations);
 
     return (
       <div>
         <Paginator
-          dates={dates}
+          {...this.props}
         />
         <Room
+          id={ROOM_GREEN}
           name="Зеленая"
           description="(до 5 персон)"
           dates={dates}
+
+          reservationTime={reservationTime}
+          reservations={reservations[ROOM_GREEN]}
         />
         <Room
+          id={ROOM_RED}
           name="Красная"
           description="(до 15 персон)"
           dates={dates}
+
+          reservationTime={reservationTime}
+          reservations={reservations[ROOM_RED]}
         />
         <Room
+          id={ROOM_BLUE}
           name="Синяя"
           description="(до 25 персон)"
           dates={dates}
+
+          reservationTime={reservationTime}
+          reservations={reservations[ROOM_BLUE]}
         />
         <Room
+          id={ROOM_PURPLE}
           name="Фиолетовая"
           description="(до 25 персон)"
           dates={dates}
+
+          reservationTime={reservationTime}
+          reservations={reservations[ROOM_PURPLE]}
         />
       </div>
     );
@@ -46,10 +71,26 @@ class ReservationRoom extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dates: getDates(state)
+    dates: getDates(state),
+    reservations: getReservations(state)
   };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    pageNext: () => {
+      dispatch(datesActions.pageNext());
+    },
+    pagePrev: () => {
+      dispatch(datesActions.pagePrev());
+    },
+    reservationTime: (reservation) => {
+      dispatch(reservationsActions.reservationTime(reservation));
+    }
+  }
 }
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(ReservationRoom);

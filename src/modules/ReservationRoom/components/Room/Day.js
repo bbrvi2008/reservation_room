@@ -18,6 +18,8 @@ class Day extends Component {
   
   render() {
     const { date } = this.props;
+    const { reservations, reservationTime } = this.props;
+    
     let timeCounter = this.dateTimeCounterDecorator(date, 1);
     let dateTimes = this.getDateTimes(timeCounter);
 
@@ -25,7 +27,12 @@ class Day extends Component {
       <div className="rr-room_day">
         {
           dateTimes.map((dateTime, i) => (
-            <Time date={dateTime} key={i} />
+            <Time 
+              date={dateTime}
+              reservations={reservations}
+              reservationTime={reservationTime}
+              key={i} 
+            />
           ))
         }
       </div>
