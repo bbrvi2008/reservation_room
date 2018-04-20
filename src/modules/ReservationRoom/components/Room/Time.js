@@ -13,7 +13,7 @@ class Time extends Component {
     const { date } = this.props;
     
     return (
-      <div className="rr-room_reserved-time">
+      <div className="rr-room_time rr-room_reserved-time">
           {moment(date).format("HH:mm")}
       </div>
     );
@@ -23,7 +23,7 @@ class Time extends Component {
     const { date } = this.props;
     
     return (
-      <div className="rr-room_free-time" onClick={this.handleTimeClick}>
+      <div className="rr-room_time rr-room_free-time" onClick={this.handleTimeClick}>
           {moment(date).format("HH:mm")}
       </div>
     );
@@ -34,9 +34,8 @@ class Time extends Component {
     const { reservations } = this.props;
 
     const reserved = reservations.some(reservation => reservation.date.getTime() === date.getTime());
-    const Time = reserved ? this.getReservedTime() : this.getFreeTime();
     return (
-      <div>{reserved ? this.getReservedTime() : this.getFreeTime()}</div>
+      reserved ? this.getReservedTime() : this.getFreeTime()
     );
   }
 }

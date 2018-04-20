@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 
 import Days from './Days';
 
+import moment from 'moment';
+
+import './style.css';
+
 class Room extends Component {
   handleReservationTime = (date) => {
-    const { id, reservationTime } = this.props;
-    reservationTime({
-      room: id,
-      date
-    })
+    const { room, name, reservationTime } = this.props;
+    if(window.confirm(`Забронировать переговорную комнату: "${name}" на "${moment(date).format("DD.MM.YYYY HH:mm")}"?`)) {
+      reservationTime({
+        room,
+        date
+      });
+    }
   }
 
   render() {
@@ -35,7 +41,7 @@ class Room extends Component {
 }
 
 Room.propTypes = {
-  id: PropTypes.string.isRequired,
+  room: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   dates: PropTypes.array.isRequired,

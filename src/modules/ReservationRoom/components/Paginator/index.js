@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import moment from 'moment';
 
+import LeftArrow from './icons/left-arrow.svg';
+import RightArrow from './icons/right-arrow.svg';
+
+
 import './style.css'
 
 class Paginator extends Component {
@@ -16,20 +20,14 @@ class Paginator extends Component {
         </div>
         <div className="rr-content rr-paginator">
           <div className="rr-paginator_buttons">
-            <div className="rr-paginator_button rr-paginator_left" onClick={pagePrev}>
-              {`<<<`}
-            </div>
-            <div className="rr-paginator_title">
-              {moment(dates[0]).format("MMMM")}
-            </div>
-            <div className="rr-paginator_button rr-paginator_right" onClick={pageNext}>
-              {`>>>`}
-            </div>
+            <img src={LeftArrow} alt="left" className="rr-paginator_button" onClick={pagePrev}/>
+            <div className="rr-paginator_title">{moment(dates[0]).format("MMMM")}</div>
+            <img src={RightArrow} alt="right" className="rr-paginator_button" onClick={pageNext}/>
           </div>
           <div className="rr-paginator_days">
             {
               dates.map((date, i) => (
-                <div className="rr-paginator_day" key={i}>{moment(date).format("DD dddd")}</div>
+                <span className="rr-paginator_day" key={i}>{moment(date).format("DD dddd")}</span>
               ))
             }            
           </div>

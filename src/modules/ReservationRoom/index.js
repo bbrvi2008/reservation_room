@@ -14,14 +14,13 @@ import { getReservations } from './reducers/reservations';
 
 
 import './style.css';
+import 'moment/locale/ru';
 
 class ReservationRoom extends Component {
-  
-  render() {
-    const { dates, pageNext, pagePrev } = this.props;
-    const { reservations, reservationTime } = this.props;
 
-    console.log(reservations);
+  render() {
+    const { dates } = this.props;
+    const { reservations, reservationTime } = this.props;
 
     return (
       <div>
@@ -29,7 +28,7 @@ class ReservationRoom extends Component {
           {...this.props}
         />
         <Room
-          id={ROOM_GREEN}
+          room={ROOM_GREEN}
           name="Зеленая"
           description="(до 5 персон)"
           dates={dates}
@@ -38,7 +37,7 @@ class ReservationRoom extends Component {
           reservations={reservations[ROOM_GREEN]}
         />
         <Room
-          id={ROOM_RED}
+          room={ROOM_RED}
           name="Красная"
           description="(до 15 персон)"
           dates={dates}
@@ -47,7 +46,7 @@ class ReservationRoom extends Component {
           reservations={reservations[ROOM_RED]}
         />
         <Room
-          id={ROOM_BLUE}
+          room={ROOM_BLUE}
           name="Синяя"
           description="(до 25 персон)"
           dates={dates}
@@ -56,7 +55,7 @@ class ReservationRoom extends Component {
           reservations={reservations[ROOM_BLUE]}
         />
         <Room
-          id={ROOM_PURPLE}
+          room={ROOM_PURPLE}
           name="Фиолетовая"
           description="(до 25 персон)"
           dates={dates}

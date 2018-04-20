@@ -1,39 +1,18 @@
-.rr-paginator_day {
-  display: inline-block;
-  /*padding: 5px;*/
-  width: 20%;
-}
-
-
-
-.rr-room_day {
-  display: inline-block;
-  width: 20%;
-  column-count: 2;
-}
-
-.rr-room {
-  padding-top: 10px;
-}
-
 .rr-container {
   display: flex;
 }
 
 .rr-left {
-  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 120px;
+  padding-left: 25px;
 }
 
 .rr-content {
-  width: 80%;
-}
-
-.rr-room_free-time {
-  cursor: pointer;
-}
-
-.rr-room_reserved-time {
-  background-color: lightgrey;
-  cursor: default;
+  flex: 4;
 }
 

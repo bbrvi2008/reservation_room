@@ -13,7 +13,7 @@ class Day extends Component {
   }
 
   getDateTimes = (timeCounter) => {
-    return Array(10).fill().map(() => (timeCounter()));
+    return Array.apply(0, new Array(10)).map(() => (timeCounter()));
   }
   
   render() {

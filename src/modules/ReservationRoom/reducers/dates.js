@@ -6,7 +6,7 @@ const initialState = {
 };
 
 //TODO: исключить выходные дни
-const incrementDate = (date, shift) => {
+/*const incrementDate = (date, shift) => {
   let newDate = new Date(date);
   newDate.setDate(newDate.getDate() + shift);
   let day = newDate.getDay();
@@ -15,7 +15,7 @@ const incrementDate = (date, shift) => {
   }
 
   return newDate;
-}
+}*/
 
 let utils = {
   dateCounterDecorator: (date, step) => {
@@ -60,5 +60,5 @@ export const getDates = (state) => {
   const { dates } = state;
 
   const dateCounter = utils.dateCounterDecorator(new Date(dates.sDate), 1);
-  return Array(dates.count).fill().map(() => (dateCounter()));
+  return Array.apply(0, new Array(dates.count)).map(() => dateCounter());
 }
