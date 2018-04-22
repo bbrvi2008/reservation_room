@@ -1,3 +1,9 @@
+.rr-module {
+  padding: 10px;
+  text-align: center;
+  min-width: 280px;
+}
+
 .rr-container {
   display: flex;
 }
@@ -13,6 +19,16 @@
 }
 
 .rr-content {
-  flex: 4;
+  flex: 6;
 }
 
+@media (max-width: 520px) {
+  .rr-container {
+    display: block;
+  }
+
+  .rr-left {
+    align-items: center;
+    padding: 5px;
+  }
+}

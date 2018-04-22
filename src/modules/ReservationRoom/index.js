@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Paginator from './components/Paginator/index';
 import Room from './components/Room/index';
 
-import { ROOM_GREEN, ROOM_RED, ROOM_BLUE, ROOM_PURPLE } from './constants';
+import { ROOM_YELLOW, ROOM_GREEN, ROOM_RED, ROOM_BLUE, ROOM_PURPLE } from './constants';
 
 import datesActions from './actions/dates';
 import reservationsActions from './actions/reservations';
@@ -23,9 +23,18 @@ class ReservationRoom extends Component {
     const { reservations, reservationTime } = this.props;
 
     return (
-      <div>
+      <div className="rr-module">
         <Paginator
           {...this.props}
+        />
+        <Room
+          room={ROOM_YELLOW}
+          name="Желтая"
+          description="(до 5 персон)"
+          dates={dates}
+
+          reservationTime={reservationTime}
+          reservations={reservations[ROOM_YELLOW]}
         />
         <Room
           room={ROOM_GREEN}
