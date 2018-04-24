@@ -4,23 +4,26 @@ import PropTypes from 'prop-types';
 import Time from './Time';
 
 class Day extends Component {
-  dateTimeCounterDecorator = (date, step) => {
-    date.setHours(8);
+  makeDateTimeCounter = (date, step) => {
+    let counter = new Date(date);
+    counter.setHours(9);
+
     return () => {
-      date.setHours(date.getHours() + step);
-      return new Date(date);
+      let nextDateTime = new Date(counter);
+      counter.setHours(counter.getHours() + step);
+      return nextDateTime;
     }
   }
 
   getDateTimes = (timeCounter) => {
-    return Array.apply(0, new Array(10)).map(() => (timeCounter()));
+    return Array.apply(0, new Array(10)).map(() => timeCounter());
   }
   
   render() {
     const { date } = this.props;
     const { reservations, reservationTime } = this.props;
     
-    let timeCounter = this.dateTimeCounterDecorator(date, 1);
+    let timeCounter = this.makeDateTimeCounter(date, 1);
     let dateTimes = this.getDateTimes(timeCounter);
 
     return (

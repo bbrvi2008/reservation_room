@@ -3,13 +3,15 @@ import { PAGE_NEXT, PAGE_PREV } from '../actions/dates';
 let utils = {
   getMonday: () => {
     let now = new Date();
-    now.setDate(now.getDate() - now.getDay() + 2);
-    return new Date(now.getFullYear(), now.getMonth(), now.getDay());
+    now.setDate(now.getDate() - now.getDay() + 1);
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
   },
-  dateCounterDecorator: (date, step) => {
+  makeDateCounter: (date, step) => {
+    let counter = new Date(date);
+
     return () => {
-      let nextDate = new Date(date);
-      date.setDate(date.getDate() + step);
+      let nextDate = new Date(counter);
+      counter.setDate(counter.getDate() + step);
       return nextDate;
     }
   },
@@ -52,6 +54,6 @@ export default (state = initialState, action) => {
 export const getDates = (state) => {
   const { dates } = state;
 
-  const dateCounter = utils.dateCounterDecorator(new Date(dates.sDate), 1);
+  const dateCounter = utils.makeDateCounter(dates.sDate, 1);
   return Array.apply(0, new Array(dates.count)).map(() => dateCounter());
 }
